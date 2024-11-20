@@ -1,6 +1,8 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:uts_mobile/views/dashboard_screen.dart';
+import 'package:uts_mobile/views/list_kost_screen.dart';
+import 'package:uts_mobile/views/profile_screen.dart';
 
 class BottomBarComponent extends StatefulWidget {
   const BottomBarComponent({super.key});
@@ -34,7 +36,7 @@ class _BottomBarComponentState extends State<BottomBarComponent> with SingleTick
         activeIcons: const [
           Icon(Icons.home, color: Color(0xff2c3e50)),
           Icon(Icons.chat, color: Color(0xff2c3e50)),
-          Icon(Icons.wallet_giftcard, color: Color(0xff2c3e50)),
+          Icon(Icons.list, color: Color(0xff2c3e50)),
           Icon(Icons.notifications, color: Color(0xff2c3e50)),
           Icon(Icons.person, color: Color(0xff2c3e50)),
         ],
@@ -67,10 +69,12 @@ class _BottomBarComponentState extends State<BottomBarComponent> with SingleTick
                 width: double.infinity,
                 height: double.infinity,
                 color: Colors.green),
+            const ListKostScreen(),
             Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.blue),
+                color: Colors.yellow),
+            const ProfileScreen(),
           ],
         ),
       ) 

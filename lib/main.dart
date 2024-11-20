@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts_mobile/component/bottom_bar_component.dart';
+import 'package:uts_mobile/views/forgot_password_screen.dart';
 import 'package:uts_mobile/views/login_screen.dart';
 import 'package:uts_mobile/views/register_screen.dart';
 
@@ -24,6 +25,7 @@ class _MyAppState extends State<MyApp> {
         '/login': (context) => const Loginscreen(),
         '/register': (context) => const Registerscreen(),
         '/dashboard': (context) => const BottomBarComponent(),
+        '/forgot-password': (context) => const ForgotPasswordscreen(),
       },
     );
   }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Loginscreen extends StatefulWidget {
-  const Loginscreen({super.key});
+class ForgotPasswordscreen extends StatefulWidget {
+  const ForgotPasswordscreen({super.key});
 
   @override
-  State<Loginscreen> createState() => _LoginscreenState();
+  State<ForgotPasswordscreen> createState() => _ForgotPasswordscreenState();
 }
 
-class _LoginscreenState extends State<Loginscreen> {
+class _ForgotPasswordscreenState extends State<ForgotPasswordscreen> {
   var rememberMe = false;
   TextStyle heading = GoogleFonts.lato(
                     height: 0.95,
@@ -40,13 +40,9 @@ class _LoginscreenState extends State<Loginscreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Hey There!", 
-                        style: heading
-                      ),
-                      Text("Let's Get You", style: heading),
-                      Text("Settled In", style: heading),
-                      const Text("Im waiting for you, please enter your detail", style: TextStyle(color: Color(0xff696969)),),
+                      Text("Lost your", style: heading),
+                      Text("Password?", style: heading),
+                      const Text("Enter your contact information or username to receive a password reset link", style: TextStyle(color: Color(0xff696969), fontSize: 13, overflow: TextOverflow.fade),),
                     ]
                   ),
                   const Divider(
@@ -55,7 +51,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   const TextField(
                     autocorrect: false,
                     decoration: InputDecoration(
-                      labelText: "Username, Email or Phone Number",
+                      labelText: "Email or Phone Number",
                       focusColor: Color(0xff696969),
                       fillColor: Color(0xff696969),
                       hoverColor: Color(0xff696969)
@@ -65,64 +61,21 @@ class _LoginscreenState extends State<Loginscreen> {
                   const Divider(
                     color: Colors.transparent,
                   ),
-                  const TextField(
-                    autocorrect: false,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                      suffixIcon: Icon(Icons.remove_red_eye, color: Colors.grey,),
-                      focusColor: Color(0xff696969)
 
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.transparent,
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          setState(() {
-                            rememberMe = !rememberMe;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              value: rememberMe, 
-                              onChanged: (value){
-                                setState(() {
-                                  rememberMe = value!;
-                                });
-                              }, 
-                              activeColor: Colors.black, 
-                            ),
-                            const Text("Remember Me")
-                          ],
-                        ),
-                      ),
-                      const Spacer(),
-                      TextButton(onPressed: (){
-                        Navigator.pushNamed(context, '/forgot-password');
-                      }, child: const Text("Lupa Password?", style: TextStyle(color:Color(0xff696969)),))
-                      
-                    ],
-                  ),
                   const Divider(
                     color: Colors.transparent,
                   ),
                   
                   ElevatedButton(
                     onPressed: (){
-                      Navigator.pushReplacementNamed(context, '/dashboard');
+                      Navigator.pushNamed(context, '/dashboard');
                     },
                     style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Color(0xff2c3e50)),
                       minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
                       shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))))
                     ),
-                    child: const Text("Log In", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                    child: const Text("Forgot Password", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                   )
                 ],
               ),
@@ -139,7 +92,7 @@ class _LoginscreenState extends State<Loginscreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  const Text("New here?"),
+                  const Text("Don't have an account?"),
                   TextButton(
                     onPressed: (){
                       Navigator.pushReplacementNamed(context, '/register');
