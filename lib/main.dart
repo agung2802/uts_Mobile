@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uts_mobile/views/dashboard_screen.dart';
+import 'package:uts_mobile/component/bottom_bar_component.dart';
 import 'package:uts_mobile/views/login_screen.dart';
+import 'package:uts_mobile/views/register_screen.dart';
 
 void main(){
   runApp(const MyApp());
@@ -21,7 +22,8 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const Loginscreen(),
-        '/dashboard': (context) => const DashboardScreen(),
+        '/register': (context) => const Registerscreen(),
+        '/dashboard': (context) => const BottomBarComponent(),
       },
     );
   }
