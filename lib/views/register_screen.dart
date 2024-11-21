@@ -10,6 +10,10 @@ class Registerscreen extends StatefulWidget {
 
 class _RegisterscreenState extends State<Registerscreen> {
   var rememberMe = false;
+
+  bool _passwordObscured = true;
+  bool _confirmObscured = true;
+
   
 
   @override
@@ -62,7 +66,22 @@ class _RegisterscreenState extends State<Registerscreen> {
                     children: [
                       TextField(
                         autocorrect: false,
-                        decoration: Style().fieldStyle( label: "Password", icon: Icons.remove_red_eye),
+                        obscureText: _passwordObscured,
+                        enableSuggestions: false,
+                        decoration: InputDecoration(
+                      labelText: "Password",
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordObscured ? Icons.visibility_off : Icons.visibility,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordObscured = !_passwordObscured;
+                          });
+                        },
+                      ),
+                      focusColor: const Color(0xff696969),
+                    ),
                       ),
                       const Text("Must Contain a number and least of 6 characters", style: TextStyle(color: Color(0xff696969), fontSize: 12),)
                   ]),
@@ -71,7 +90,22 @@ class _RegisterscreenState extends State<Registerscreen> {
                     children: [
                       TextField(
                         autocorrect: false,
-                        decoration: Style().fieldStyle( label: "Confirm Password", icon: Icons.remove_red_eye),
+                        obscureText: _confirmObscured,
+                        enableSuggestions: false,
+                        decoration: InputDecoration(
+                        labelText: "Confirm Password",
+                        suffixIcon: IconButton(
+                            icon: Icon(
+                              _confirmObscured ? Icons.visibility_off : Icons.visibility,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _confirmObscured = !_confirmObscured;
+                              });
+                            },
+                          ),
+                          focusColor: const Color(0xff696969),
+                        ),
                       ),
                       const Text("Must Contain a number and least of 6 characters", style: TextStyle(color: Color(0xff696969), fontSize: 12),)
                   ]),
@@ -81,7 +115,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                   
                   ElevatedButton(
                     onPressed: (){
-                      Navigator.pushNamed(context, '/dashboard');
+                      Navigator.pushNamed(context, '/dashboard', arguments: "username");
                     },
                     style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Color(0xff2c3e50)),

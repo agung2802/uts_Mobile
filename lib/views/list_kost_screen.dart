@@ -64,28 +64,44 @@ class ListKostScreen extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) => Container(
                   padding: const EdgeInsets.all(20),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.grey,
-                        ),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/detail_kost');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.blue
                       ),
-                      const SizedBox(width: 10),
-                      Column(
-                        
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: 
+                      Row(
                         children: [
-                          Text("Kost $index", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                          const Text("Kamar mandi luar | Kasur Single ", style: TextStyle(fontSize: 13 ),),
-                          const Text("Rp 1.500.000", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),),
-                        ]
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.grey,
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Kost $index", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                              const Flexible(
+                                child: 
+                                Text("Kamar mandi luar | test | test | test | test", style: TextStyle(fontSize: 13, overflow: TextOverflow.visible),),
+                              ),
+                              
+                              const Text("Rp 1.500.000", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),),
+                            ]
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    )
+                    
+                  )
                 ),
               ),
             )

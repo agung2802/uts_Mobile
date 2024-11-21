@@ -5,13 +5,18 @@ import 'package:uts_mobile/views/list_kost_screen.dart';
 import 'package:uts_mobile/views/profile_screen.dart';
 
 class BottomBarComponent extends StatefulWidget {
-  const BottomBarComponent({super.key});
+
+  const BottomBarComponent({super.key, required this.username});
+
+  final String username;
+  
 
   @override
   State<BottomBarComponent> createState() => _BottomBarComponentState();
 }
 
 class _BottomBarComponentState extends State<BottomBarComponent> with SingleTickerProviderStateMixin {
+  
   int _tabIndex = 0;
   int get tabIndex => _tabIndex;
   set tabIndex(int v) {
@@ -29,6 +34,7 @@ class _BottomBarComponentState extends State<BottomBarComponent> with SingleTick
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       extendBody: true,
@@ -73,8 +79,10 @@ class _BottomBarComponentState extends State<BottomBarComponent> with SingleTick
             Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: Colors.yellow),
-            const ProfileScreen(),
+                color: Colors.yellow,
+                child: Text(widget.username),
+                ),
+            ProfileScreen( username: widget.username,),
           ],
         ),
       ) 

@@ -9,6 +9,25 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
+  String username="";
+  String password="";
+  var user = [
+      {
+      "username": "admin",
+      "password": "admin",
+      },
+      {
+      "username": "user",
+      "password": "user",
+      },
+      {
+      "username": "Agung",
+      "password": "Rizki",
+      }
+    ];
+
+    bool _isObscure = true;
+    
   var rememberMe = false;
   TextStyle heading = GoogleFonts.lato(
                     height: 0.95,
@@ -52,27 +71,47 @@ class _LoginscreenState extends State<Loginscreen> {
                   const Divider(
                     color: Colors.transparent,
                   ),
-                  const TextField(
+                  TextField(
                     autocorrect: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Username, Email or Phone Number",
                       focusColor: Color(0xff696969),
                       fillColor: Color(0xff696969),
                       hoverColor: Color(0xff696969)
                     ),
+                    onChanged: (value) => {
+                      setState(() {
+                        username = value;
+                      })
+                    },
 
                   ),
                   const Divider(
                     color: Colors.transparent,
                   ),
-                  const TextField(
+                  TextField(
                     autocorrect: false,
+                    obscureText: _isObscure,
+                    enableSuggestions: false,
                     decoration: InputDecoration(
                       labelText: "Password",
-                      suffixIcon: Icon(Icons.remove_red_eye, color: Colors.grey,),
-                      focusColor: Color(0xff696969)
-
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isObscure ? Icons.visibility_off : Icons.visibility,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                      ),
+                      focusColor: const Color(0xff696969),
                     ),
+                    onChanged: (value) => {
+                      setState(() {
+                        password = value;
+                      })
+                    },
                   ),
                   const Divider(
                     color: Colors.transparent,
@@ -114,9 +153,7 @@ class _LoginscreenState extends State<Loginscreen> {
                   ),
                   
                   ElevatedButton(
-                    onPressed: (){
-                      Navigator.pushReplacementNamed(context, '/dashboard');
-                    },
+                    onPressed: login,
                     style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Color(0xff2c3e50)),
                       minimumSize: WidgetStatePropertyAll(Size(double.infinity, 50)),
@@ -155,5 +192,25 @@ class _LoginscreenState extends State<Loginscreen> {
       )
       
     );
+  }
+
+  login(){
+    if (user.any((user) => user['username'] == username)) {
+        if (user.any((element) => element['username'] == username && element['password'] == password,)) {
+          Navigator.pushReplacementNamed(context, '/dashboard', arguments: username);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Wrong password or username"),
+            ),
+          );
+        }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("User not found"),
+        ),
+      );
+    }
   }
 }

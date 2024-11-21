@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({super.key, required this.username});
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class ProfileScreen extends StatelessWidget {
               const Divider(
                 color: Colors.transparent,
               ),
-              const Text("Username", style: TextStyle(color: Color(0xff2c3e50), fontSize: 20, fontWeight: FontWeight.bold),),
+              Text(username, style: const TextStyle(color: Color(0xff2c3e50), fontSize: 20, fontWeight: FontWeight.bold),),
               const Text("E-mail", style: TextStyle(color: Color(0xff2c3e50), fontSize: 20),),
             ]
           ),
@@ -199,6 +200,20 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Spacer(),
                       Icon(Icons.arrow_forward_ios, color: Colors.grey,)
+                    ],
+                  ),
+                ),
+                const Divider(
+                  color: Colors.transparent,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/login');
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Logout", style: TextStyle(color: Color(0xff696969), fontSize: 18, fontWeight: FontWeight.bold),),
                     ],
                   ),
                 ),
